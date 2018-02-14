@@ -10,8 +10,10 @@ app.use(function(req, res, next) {
   return next()
 })
 
+app.use(express.static(__dirname + '/views'));
+
 app.get('/', (req, res) => {
-  res.send('Helloween')
+  res.sendFile('views/index.html', {root: __dirname })
 })
 
 app.get('/new/:url(*)', (req, res) => {
