@@ -17,9 +17,14 @@ exports.uniqueStr = () => {
 
 exports.findAndRedirect = async (req, res) => {
   const { short_url } = req.params
-  const { original_url } = await URLModal.findOne({short_url})
-  console.log(original_url)
-  res.redirect(original_url)
+
+  try {
+    const { original_url } = await URLModal.findOne({short_url})
+    res.redirect(original_url)
+  }
+  catch (error) {
+    res.json({error: `URL can't be found in database`})
+  }
 }
 
 exports.checkURL = (url) => isURL(url)
