@@ -6,7 +6,7 @@ const isURL = require('is-url')
 exports.saveURL = ({original_url, short_url}, callback) => {
   const url = new URLModal({ original_url, short_url })
   url.save(err => {
-    if (err) console.error(err)
+    if (err) return ;
     if (callback) callback(url)
   })
 }
